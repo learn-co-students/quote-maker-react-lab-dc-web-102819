@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import QuoteCard from '../components/QuoteCard';
 
 class Quotes extends Component {
-
   render() {
     return (
       <div>
@@ -15,11 +14,7 @@ class Quotes extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              {/*
-                TODO:
-
-                Render Quotes With QuoteCard component and pass down callback props for removing, upvoting and downvoting quotes
-               */}
+              {this.props.quotes.map(quote => <QuoteCard key={quote.id}  quote={quote} />)}
             </div>
           </div>
         </div>
@@ -29,4 +24,10 @@ class Quotes extends Component {
 }
 
 //add arguments to connect as needed
-export default connect()(Quotes);
+const mapStateToProps = state =>{
+  return{
+    quotes: state.quotes
+  }
+}
+
+export default connect(mapStateToProps)(Quotes);
