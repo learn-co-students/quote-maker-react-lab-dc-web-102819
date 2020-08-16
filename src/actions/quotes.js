@@ -8,3 +8,11 @@ export const addQuote = (quoteObj) =>{
 export const upVoting = (quoteId) =>{
     return {type:'UP_VOTING', quoteId }
 }
+
+export const downVoting = (quoteId) =>{
+    return {type:'DOWN_VOTING', quoteId }
+}
+
+export const deleteQuote = (quoteId) =>{
+    return {type:'DELETE_QUOTE', quoteId }
+}

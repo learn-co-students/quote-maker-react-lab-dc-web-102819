@@ -3,15 +3,29 @@ export default (state = [], action) => {
     case "ADD_QUOTE":
       return state.concat(action.quotes);
     case "UP_VOTING":
-      console.log("aaefwafeff")
-      // state.map(quote => {
-      //   if(quote.id === action){
-      //     return {...state, vote:state.vote + 1}
-      //   }else{
-      //     return quote
-      //   }
-      // })
-      return state
+      return state.map(quote => {
+        if(quote.id === action.quoteId){
+          return {
+            ...quote,
+            vote:quote.vote += 1
+          }
+        }else{
+          return quote
+        }
+      })
+    case 'DOWN_VOTING':
+      return state.map(quote => {
+        if(quote.id === action.quoteId){
+          return {
+            ...quote,
+            vote:quote.vote -= 1
+          }
+        }else{
+          return quote
+        }
+      })
+    case 'DELETE_QUOTE':
+      return state.filter(quote => quote.id !== action.quoteId)
     default:
       return state;
   }
